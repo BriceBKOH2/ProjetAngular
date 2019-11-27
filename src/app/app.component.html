@@ -1,5 +1,8 @@
 <html>
   <header style="text-align:center">
-    <app-navbar></app-navbar>
+    <app-navbar [displayNavBar]="displayNavBar"></app-navbar>
+    <app-btn-display-navbar
+      (navBarDisplay)="displayNavBar = $event"
+    ></app-btn-display-navbar>
   </header>
 </html>
