@@ -1,0 +1,55 @@
+<div *ngIf="info$ | async as info">
+  <!-- Form to select Set and Class for query by set, class or both -->
+  <div class="container">
+    <form [formGroup]="filterForm" (ngSubmit)="filter()">
+      <!-- set selection -->
+      <div class="form-group">
+        <label for="set">Set Name</label>
+        <select id="set" name="set" class="form-control" formControlName="set">
+          <option *ngFor="let setName of info.sets" [ngValue]="setName">
+            {{ setName }}</option
+          >
+        </select>
+      </div>
+      <!-- class selection -->
+      <div class="form-group">
+        <label for="classe"> Classe Name</label>
+        <select
+          name="classe"
+          id="classe"
+          class="form-control"
+          formControlName="classe"
+        >
+          <option
+            *ngFor="let classeName of info.classes"
+            [ngValue]="classeName"
+          >
+            {{ classeName }}</option
+          >
+        </select>
+      </div>
+
+      <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="cards$ | async as cards">
+    <div class="container list-group">
+      <a
+        *ngFor="let card of cards"
+        [routerLink]="card.cardId"
+        class="list-group-item list-group-item-action d-flex flex-column justify-content-center"
+      >
+        <div class="row">
+          <div class="col">
+            <h4>{{ card.name }}</h4>
+            <p>{{ card.text }}</p>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <img *ngIf="card.img" src="{{ card.img }}" />
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+</div>

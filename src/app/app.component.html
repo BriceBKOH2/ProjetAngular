@@ -1,8 +1,5 @@
-<html>
-  <header style="text-align:center">
-    <app-navbar [displayNavBar]="displayNavBar"></app-navbar>
-    <app-btn-display-navbar
-      (navBarDisplay)="displayNavBar = $event"
-    ></app-btn-display-navbar>
-  </header>
-</html>
+<header>
+  <app-navbar></app-navbar>
+</header>
+<router-outlet></router-outlet>
+<app-btn-display-navbar appNavScroll></app-btn-display-navbar>

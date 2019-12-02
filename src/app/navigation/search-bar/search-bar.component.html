@@ -1,0 +1,29 @@
+<div class="container">
+  <!-- form to search by card name (complete or not) -->
+  <form (ngSubmit)="submit(myForm)" #myForm="ngForm">
+    <input
+      [(ngModel)]="query"
+      type="search"
+      class="form-control"
+      required
+      minlength="3"
+      name="queryControl"
+    />
+    <!-- Print on windows an error text to indicate what is needed to do a correct query -->
+    <ng-container
+      *ngIf="myForm.submitted && myForm.controls.queryControl?.errors as errors"
+    >
+      <ng-container *ngIf="errors?.required">
+        <div class="help-text text-danger">
+          Need to input in search bar before submitting
+        </div>
+      </ng-container>
+      <ng-container *ngIf="errors?.minlength as minlength">
+        <div class="help-text text-danger">
+          Search bar needs {{ minlength | json }}
+        </div>
+      </ng-container>
+    </ng-container>
+    <button type="submit" class="btn btn-success">Search Card</button>
+  </form>
+</div>

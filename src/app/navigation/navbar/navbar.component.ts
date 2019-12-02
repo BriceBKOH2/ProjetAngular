@@ -1,23 +1,23 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NavBarDisplayService } from '../service/navbar-display.service';
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input()
-  displayNavBar: boolean;
+  navBarDisplay: Observable<boolean>;
 
+  user = { firstName: String, lastName: String };
   isCollapsed = true;
-  title = "My NarvBar";
-  logo = "https://angular.io/assets/images/logos/angular/angular.svg";
+  title = 'My NarvBar';
+  logo = 'https://angular.io/assets/images/logos/angular/angular.png';
 
-  constructor() {}
+  constructor(private navBarDisplayService: NavBarDisplayService) {}
 
-  ngOnInit() {}
-
-  changeCollapse(isDisplayed) {
-    this.isCollapsed = isDisplayed;
+  ngOnInit() {
+    this.navBarDisplay = this.navBarDisplayService.onChangeDisplay();
   }
 }
